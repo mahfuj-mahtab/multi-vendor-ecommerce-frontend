@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Carousel from './components/Carousel'
 import MyCarousel from './components/Carousel'
 import AllProducts from './components/AllProducts'
+import AllCategory from './components/AllCategory'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,6 +13,7 @@ function App() {
     <div>
       <Header/>
     <MyCarousel/>
+    <AllCategory/>
     <AllProducts/>
     </div>
   )
