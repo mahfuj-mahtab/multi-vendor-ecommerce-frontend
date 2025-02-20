@@ -9,11 +9,11 @@ import {
   
 function MyCarousel() {
   return (
-    <div className='container mx-auto max-w-7xl mt-5 h-[500px]'>
+    <div className='container mx-auto max-w-7xl mt-5 h-[500px] lg:px-0 md:px-0 px-2'>
     <Carousel>
         <CarouselContent>
             <CarouselItem>
-                <div  className='h-[500px] border-2'>
+                <div  className='h-[500px]  border-2'>
                     <h1>This is banner</h1>
                 </div>
             </CarouselItem>
