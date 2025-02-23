@@ -2,10 +2,10 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className=' w-[100%] border-2'>
+    <div className=' w-[100%] mt-30'>
         
 
-<footer class="bg-white dark:bg-gray-900">
+<footer class="bg-emerald-100 dark:bg-gray-900">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
@@ -16,7 +16,7 @@ function Footer() {
           </div>
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
-                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                  <h2 class="mb-6 text-sm font-semibold text-white-900 uppercase dark:text-white">Resources</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
                           <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
