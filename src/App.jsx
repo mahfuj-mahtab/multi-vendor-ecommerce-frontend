@@ -5,6 +5,7 @@ import Carousel from './components/Carousel'
 import MyCarousel from './components/Carousel'
 import AllProducts from './components/AllProducts'
 import AllCategory from './components/AllCategory'
+import Footer from './components/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,6 +16,7 @@ function App() {
     <MyCarousel/>
     <AllCategory/>
     <AllProducts/>
+    <Footer/>
     </div>
   )
 }
