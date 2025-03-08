@@ -8,6 +8,8 @@ import SingleProduct from './components/SingleProduct.jsx';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import Profile from './components/Profile.jsx';
+import AllOrder from './components/AllOrder.jsx';
+import VendorOrder from './components/VendorOrder.jsx';
 
     
 createRoot(document.getElementById('root')).render(
@@ -18,6 +20,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/vendor/orders/" element={<VendorOrder  />} />
         </Routes>
       
 
