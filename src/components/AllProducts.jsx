@@ -37,20 +37,20 @@ function AllProducts() {
             <div key='' className="group relative">
               <img
                 alt='alt'
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUPIfiGgUML8G3ZqsNLHfaCnZK3I5g4tJabQ&s'
+                src={`${api}/${product.banner_img}`}
                 className="aspect-square w-[95%] m-[2.5%] rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-75"
-              />
+              crossOrigin='anonymous'/>
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-md font-bold text-gray-700">
-                    <a href="">
+                    <a href={`/single/product/${product._id}`}>
                       <span aria-hidden="true" className="absolute inset-0" />
-                      First product
+                      {product.name}
                     </a>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">color</p>
+                  {/* <p className="mt-1 text-sm text-gray-500">color</p> */}
                 </div>
-                <p className="text-sm mr-10 font-medium text-gray-900">1250</p>
+                <p className="text-sm mr-10 font-medium text-gray-900">{product.discount_price}</p>
               </div>
             </div>
             </CarouselItem>
