@@ -17,7 +17,9 @@ function Login() {
     axios.post(`${api}/api/v1/users/login`, data)
     .then((res) => {
       localStorage.setItem('accessToken', res.data.data.accessToken)
-      localStorage.setItem('userinfo', res.data.data.user)
+      localStorage.setItem('userinfo', JSON.stringify(res.data.data.user) )
+      console.log(res.data.data.user,'user');
+      
       localStorage.setItem('loggedIn', true)
       navigate('/profile')
       
