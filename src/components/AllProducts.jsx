@@ -8,6 +8,7 @@ import {
   } from "@/components/ui/carousel"
   import axios from 'axios'
 import { api } from './SubComponents/API'
+import { Link } from 'react-router'
 function AllProducts() {
   const [products, setProducts] = useState()
   useEffect(() => {
@@ -43,10 +44,10 @@ function AllProducts() {
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-md font-bold text-gray-700">
-                    <a href={`/single/product/${product._id}`}>
+                    <Link to={`/single/product/${product._id}`}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
-                    </a>
+                    </Link>
                   </h3>
                   {/* <p className="mt-1 text-sm text-gray-500">color</p> */}
                 </div>

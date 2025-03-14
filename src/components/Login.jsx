@@ -1,7 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React,{useState,useEffect} from 'react'
+import { data, Link, useNavigate } from 'react-router'
+import {api} from './SubComponents/API'
+import axios from 'axios'
+import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Login() {
+  const navigate = useNavigate()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const formSubmitted = (data) => {
+    axios.post(`${api}/api/v1/users/login`, data)
+    .then((res) => {
+      localStorage.setItem('accessToken', res.data.data.accessToken)
+      localStorage.setItem('userinfo', res.data.data.user)
+      localStorage.setItem('loggedIn', true)
+      navigate('/profile')
+      
+    })
+    .catch((err) => {
+      toast(err.response.data.message)
+    })
+  }
+  
   return (
     <div>
         <div className="flex h-lvh flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-emerald-100">
@@ -18,7 +43,7 @@ function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm ">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={handleSubmit(formSubmitted)} method="POST" className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
                 Email address
@@ -30,6 +55,7 @@ function Login() {
                   type="email"
                   required
                   autoComplete="email"
+                  {...register('email')}
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
@@ -53,6 +79,7 @@ function Login() {
                   type="password"
                   required
                   autoComplete="current-password"
+                  {...register('password')}
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
@@ -77,6 +104,7 @@ function Login() {
         </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }
