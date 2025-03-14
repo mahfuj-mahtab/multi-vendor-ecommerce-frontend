@@ -12,6 +12,7 @@ import AllOrder from './components/AllOrder.jsx';
 import VendorOrder from './components/VendorOrder.jsx';
 import VendorAllProduct from './components/VendorAllProduct.jsx';
 import VendorSingleProduct from './components/VendorSingleProduct.jsx';
+import VendorProductAdd from './components/VendorProductAdd.jsx';
 
     
 createRoot(document.getElementById('root')).render(
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/profile" element={<Profile />} />
           <Route path="/vendor/orders/" element={<VendorOrder  />} />
           <Route path="/vendor/all/products" element={<VendorAllProduct  />} />
+          <Route path="/vendor/product/add" element={<VendorProductAdd  />} />
           <Route path="/vendor/product/:p_id" element={<VendorSingleProduct  />} />
 
 
