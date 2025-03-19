@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API, { api } from "./SubComponents/API";
 
 const OrderPage = () => {
     const [cart, setCart] = useState([]);
@@ -34,11 +35,21 @@ const OrderPage = () => {
 
         const orderDetails = {
             customer: formData,
-            cartItems: cart,
+            order_items: cart,
             totalAmount: totalPrice,
             orderDate: new Date().toLocaleString(),
         };
-
+        API.post(`/api/v1/users/order`,orderDetails)
+        .then((res)=>{
+            console.log(res);
+            
+        })
+        .catch((err)=>{
+            console.log(err);
+            
+        })
+            console.log(orderDetails);
+            
         // ✅ Save order details to localStorage
         localStorage.setItem("order", JSON.stringify(orderDetails));
 
@@ -86,6 +97,15 @@ const OrderPage = () => {
                     name="email"
                     placeholder="Email"
                     value={formData.email}
+                    onChange={handleChange}
+                    className="w-full p-2 border rounded mb-3"
+                    required
+                />
+                <input
+                    type="text"
+                    name="phone"
+                    placeholder="phone"
+                    value={formData.phone}
                     onChange={handleChange}
                     className="w-full p-2 border rounded mb-3"
                     required
