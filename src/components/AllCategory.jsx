@@ -24,10 +24,11 @@ function AllCategory() {
             {categories.map((category)=>(
 
             <div className='lg:w-75 w-[98%] border-2 h-full rounded-lg align-center flex flex-col items-center pb-5 mb-5'>
-                <img className='w-34 h-36' src={category.logo} alt="" />
+                <img className='w-34 h-36 rounded-full mt-2' src={category.logo} alt="" /> 
                 <p className='font-normal mt-5'>{category.name}</p>
             </div>
             ))}
+           
           
          
             

@@ -69,9 +69,9 @@ function SingleProduct() {
               <div className="lg:w-[49%] h-full pl-5 w-full">
                 <h2 className='mt-3 font-semibold text-2xl text-gray-600'>{product.name}</h2>
                 <div className="w-[90%] h-10 mt-4 ">
-                  <span className='font-semibold text-md text-gray-600 me-5 px-3 py-1 rounded-2xl bg-gray-200'>Price : 1200 tk
+                  <span className='font-semibold text-md text-gray-600 me-5 px-3 py-1 rounded-2xl bg-gray-200'>Price : {product.discount_price} tk
 
-                  <del> <span className='font-semibold text-md text-gray-400 pl-3'>1200 tk</span></del>
+                  <del> <span className='font-semibold text-md text-gray-400 pl-3'>{product.price} tk</span></del>
                   </span>
                  
                 </div>
@@ -89,7 +89,7 @@ function SingleProduct() {
                <p className='my-2 font-semibold text-gray-600'>Quantity</p>
 
                <input type="number" name="" id="" className='border-1 rounded-md  border-gray-400 h-7 pl-2 w-20'  defaultValue={1} onChange={(e) => setQuantity(Number(e.target.value))}/> <br />
-               <Link to='/order' className='btn-lg w-40 h-9 rounded-md mt-3 bg-blue-700 text-white hover:bg-blue-600'>Buy Now</Link>
+               <Link to='/order' className='px-6 py-2 btn-lg w-40 h-9 rounded-md mt-3 bg-blue-700 text-white hover:bg-blue-600'>Buy Now</Link>
                <button className='w-40 h-9 rounded-md mt-3 bg-blue-700 text-white hover:bg-blue-600 ml-3' onClick={() => addToCart(product, quantity)}>Add to Cart</button>
                
                </div>
