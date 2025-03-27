@@ -42,10 +42,12 @@ function SingleProduct() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }, [cart]);
   useEffect(() => {
-    axios.get(`${api}/api/v1/home/product/${p_id}`)
+    axios.get(`${api}/api/v1/products/${p_id}/`)
     .then((response)=>{
-      setProduct(response.data.data)
-      console.log(response.data.data)
+      setProduct(response.data)
+      console.log(response.data.banner_img)
+      
+      console.log(response.data)
       
     })
     .catch((error)=>{
@@ -62,7 +64,7 @@ function SingleProduct() {
         <div className="container m-auto max-w-7xl h-auto mt-5">
           <div className="container h-[600px] lg:flex">
               <div className="lg:w-[50%] h-full w-full">
-                <img className='mt-3 rounded-2xl' src="https://easyfashion.com.bd/wp-content/uploads/2025/02/shirt-10-1-800x534.webp" alt="" />
+                <img className='mt-3 rounded-2xl' src={product.banner_img} alt="" />
               </div>
               <div className="lg:w-[49%] h-full pl-5 w-full">
                 <h2 className='mt-3 font-semibold text-2xl text-gray-600'>{product.name}</h2>

@@ -14,18 +14,18 @@ function Login() {
   } = useForm();
 
   const formSubmitted = (data) => {
-    axios.post(`${api}/api/v1/users/login`, data)
+    axios.post(`${api}/api/v1/users/login/`, data)
     .then((res) => {
-      localStorage.setItem('accessToken', res.data.data.accessToken)
-      localStorage.setItem('userinfo', JSON.stringify(res.data.data.user) )
-      console.log(res.data.data.user,'user');
+      localStorage.setItem('accessToken', res.data.message.access)
+      localStorage.setItem('userinfo', JSON.stringify(res.data.message.data) )
+      console.log(res,'user');
       
       localStorage.setItem('loggedIn', true)
       navigate('/profile')
       
     })
     .catch((err) => {
-      toast(err.response.data.message)
+      toast('unauthorized')
     })
   }
   

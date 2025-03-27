@@ -1,7 +1,33 @@
-import React from 'react'
-import { Link } from 'react-router'
-
+import React,{useState,useEffect} from 'react'
+import { data, Link, useNavigate } from 'react-router'
+import {api} from './SubComponents/API'
+import axios from 'axios'
+import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
 function Register() {
+  const navigate = useNavigate()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const formSubmitted = (data) => {
+    axios.post(`${api}/api/v1/users/register/`, data)
+    .then((res) => {
+      // localStorage.setItem('accessToken', res.data.message.access)
+      // localStorage.setItem('userinfo', JSON.stringify(res.data.message.data) )
+      // console.log(res,'user');
+      
+      // localStorage.setItem('loggedIn', true)
+      navigate('/profile')
+      
+    })
+    .catch((err) => {
+      console.log(err);
+      
+      toast('unauthorized')
+    })
+  }
   return (
     <div>
         <div className="flex h-lvh flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-emerald-100">
@@ -18,7 +44,7 @@ function Register() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm ">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={handleSubmit(formSubmitted)} method="POST" className="space-y-6">
             <div>
               <label htmlFor="First Name" className="block text-sm/6 font-medium text-gray-900">
                 First Name
@@ -30,6 +56,7 @@ function Register() {
                   type="text"
                   required
                   autoComplete="text"
+                  {...register('first_name')}
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
@@ -45,6 +72,8 @@ function Register() {
                   type="text"
                   required
                   autoComplete="text"
+                  {...register('last_name')}
+
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
@@ -60,6 +89,8 @@ function Register() {
                   type="email"
                   required
                   autoComplete="email"
+                  {...register('email')}
+
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
@@ -82,6 +113,8 @@ function Register() {
                   name="password"
                   type="password"
                   required
+                  {...register('password')}
+
                   autoComplete="current-password"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />

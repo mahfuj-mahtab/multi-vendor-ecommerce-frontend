@@ -4,9 +4,11 @@ import {api} from './SubComponents/API'
 function AllCategory() {
     const [categories,setCategories] = useState()
     useEffect(() => {
-      axios.get(`${api}/api/v1/home/categories`)
+      axios.get(`${api}/api/v1/category/`)
       .then((response)=>{
-        setCategories(response.data.data)
+        console.log(response)
+        
+        setCategories(response.data)
       })
       .catch((error)=>{
         console.log(error)
@@ -22,7 +24,7 @@ function AllCategory() {
             {categories.map((category)=>(
 
             <div className='lg:w-75 w-[98%] border-2 h-full rounded-lg align-center flex flex-col items-center pb-5 mb-5'>
-                <img className='w-34 h-36' src={category.image} alt="" />
+                <img className='w-34 h-36' src={category.logo} alt="" />
                 <p className='font-normal mt-5'>{category.name}</p>
             </div>
             ))}

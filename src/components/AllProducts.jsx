@@ -12,9 +12,9 @@ import { Link } from 'react-router'
 function AllProducts() {
   const [products, setProducts] = useState()
   useEffect(() => {
-        axios.get(`${api}/api/v1/home/products/`)
+        axios.get(`${api}/api/v1/products/`)
         .then((response)=>{
-          setProducts(response.data.data);
+          setProducts(response.data);
           
         })
         .catch((error)=>{
@@ -38,13 +38,13 @@ function AllProducts() {
             <div key='' className="group relative">
               <img
                 alt='alt'
-                src={`${api}/${product.banner_img}`}
+                src={`${product.banner_img}`}
                 className="aspect-square w-[95%] m-[2.5%] rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-75"
               crossOrigin='anonymous'/>
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-md font-bold text-gray-700">
-                    <Link to={`/single/product/${product._id}`}>
+                    <Link to={`/single/product/${product.id}`}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
                     </Link>

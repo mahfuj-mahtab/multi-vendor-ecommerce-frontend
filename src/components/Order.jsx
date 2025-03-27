@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import API, { api } from "./SubComponents/API";
+import { useNavigate } from "react-router";
 
 const OrderPage = () => {
     const [cart, setCart] = useState([]);
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -17,7 +19,7 @@ const OrderPage = () => {
     }, []);
 
     // ✅ Calculate total price
-    const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const totalPrice = cart.reduce((sum, item) => sum + item.discount_price * item.quantity, 0);
 
     // ✅ Handle form input changes
     const handleChange = (e) => {
@@ -39,10 +41,10 @@ const OrderPage = () => {
             totalAmount: totalPrice,
             orderDate: new Date().toLocaleString(),
         };
-        API.post(`/api/v1/users/order`,orderDetails)
+        API.post(`/api/v1/user/order/orders/`, orderDetails)
         .then((res)=>{
             console.log(res);
-            
+            navigate('/profile')
         })
         .catch((err)=>{
             console.log(err);
@@ -71,7 +73,7 @@ const OrderPage = () => {
                     {cart.map((item) => (
                         <div key={item.id} className="flex justify-between border-b py-2">
                             <span>{item.name} (x{item.quantity})</span>
-                            <span>${item.price * item.quantity}</span>
+                            <span>${item.discount_price * item.quantity}</span>
                         </div>
                     ))}
                     <div className="flex justify-between font-bold text-lg mt-3">
