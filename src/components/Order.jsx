@@ -79,17 +79,20 @@ const OrderPage = () => {
     
             // ✅ First, save order details to your backend
 
-            // const orderResponse = await axios.post(`${api}/api/v1/user/order/orders/`, orderDetails);
+            const orderResponse = await API.post(`/api/v1/user/order/orders/`, orderDetails);
+            if(orderResponse.status === 201) {
+                console.log("Order created successfully");
+                const response = await axios.post(`${api}/api/v1/user/order/create-checkout-session/`);
     
-            const response = await axios.post(`${api}/api/v1/user/order/create-checkout-session/`);
-
-            if (response.data.url) {
-                window.location.href = response.data.url;  // Redirect to Stripe
-            } else {
-                console.error("Error: No URL returned from API");
+                if (response.data.url) {
+                    window.location.href = response.data.url;  // Redirect to Stripe
+                } else {
+                    console.error("Error: No URL returned from API");
+                }
             }
            
         } catch (error) {
+            navigate('/login    ')
             console.error("Checkout Error:", error);
         }
     };
@@ -174,9 +177,14 @@ const OrderPage = () => {
                 </button>
             </form>
             
-                <button onClick={handleCheckout} className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-500">
+            <form onSubmit={handleCheckout}>
+           
+
+
+                <button  className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-500">
                     Place order with stripe checkout
                 </button>
+            </form>
             
         </div>
     );
