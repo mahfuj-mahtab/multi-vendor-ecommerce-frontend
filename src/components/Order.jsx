@@ -82,7 +82,7 @@ const OrderPage = () => {
             const orderResponse = await API.post(`/api/v1/user/order/orders/`, orderDetails);
             if(orderResponse.status === 201) {
                 console.log("Order created successfully");
-                const response = await axios.post(`${api}/api/v1/user/order/create-checkout-session/`);
+                const response = await axios.post(`${api}/api/v1/user/order/create-checkout-session/`,cart);
     
                 if (response.data.url) {
                     window.location.href = response.data.url;  // Redirect to Stripe
