@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const api = 'http://127.0.0.1:8000';
+export const api = 'https://ecomapi.mahfujmohot.com';
 
 const API = axios.create({
     baseURL: api,
